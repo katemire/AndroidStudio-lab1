@@ -1,5 +1,5 @@
 package ru.student.lab1
-// Лабораторная работа №1
+
 import android.app.Activity
 import android.os.Bundle
 import android.widget.Button
@@ -20,17 +20,23 @@ class MainActivity : Activity() {
 
         processButton.setOnClickListener {
             val text = inputText.text.toString()
+
             if (text.isBlank()) {
-                Toast.makeText(this, "Сначала введите текст", Toast.LENGTH_SHORT).show()
-                resultText.text = "Нет текста для обработки."
+                Toast.makeText(
+                    this,
+                    "Enter some text first",
+                    Toast.LENGTH_SHORT
+                ).show()
+                resultText.text = "No text to process."
             } else {
                 val words = processor.findFiveLongestWords(text)
+
                 resultText.text = if (words.isEmpty()) {
-                    "В тексте не найдено слов."
+                    "No words found."
                 } else {
                     words.mapIndexed { index, word ->
-                        "${index + 1}. $word — ${word.length} симв."
-                    }.joinToString(separator = "\n")
+                        "${index + 1}. $word - ${word.length} chars"
+                    }.joinToString("\n")
                 }
             }
         }
