@@ -1,5 +1,5 @@
 package ru.student.lab1
-
+// Лабораторная работа №1
 import android.app.Activity
 import android.os.Bundle
 import android.widget.Button
