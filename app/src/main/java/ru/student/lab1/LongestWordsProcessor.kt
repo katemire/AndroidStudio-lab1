@@ -1,4 +1,4 @@
-package ru.student.lab1
+﻿package ru.student.lab1
 
 class LongestWordsProcessor {
     fun findFiveLongestWords(text: String): List<String> {
