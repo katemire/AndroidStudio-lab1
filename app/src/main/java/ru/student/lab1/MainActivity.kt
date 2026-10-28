@@ -1,43 +1,38 @@
 package ru.student.lab1
 
-import android.app.Activity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : Activity() {
-    private val processor = LongestWordsProcessor()
+class MainActivity : AppCompatActivity() {
+
+    private val sourceText =
+        "Программирование позволяет создавать удивительные приложения. " +
+        "Алгоритмы обрабатывают информацию, последовательность определяет результат. " +
+        "Самостоятельность и внимательность помогают совершенствовать программирование."
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val inputText = findViewById<EditText>(R.id.inputText)
+        val sourceTextView = findViewById<TextView>(R.id.sourceText)
+        val resultTextView = findViewById<TextView>(R.id.resultText)
         val processButton = findViewById<Button>(R.id.processButton)
-        val resultText = findViewById<TextView>(R.id.resultText)
+
+        sourceTextView.text = sourceText
+
+        val processor = LongestWordsProcessor()
 
         processButton.setOnClickListener {
-            val text = inputText.text.toString()
+            val words = processor.findFiveLongestWords(sourceText)
 
-            if (text.isBlank()) {
-                Toast.makeText(
-                    this,
-                    "Enter some text first",
-                    Toast.LENGTH_SHORT
-                ).show()
-                resultText.text = "No text to process."
+            resultTextView.text = if (words.isEmpty()) {
+                "В тексте не найдено ни одного слова."
             } else {
-                val words = processor.findFiveLongestWords(text)
-
-                resultText.text = if (words.isEmpty()) {
-                    "No words found."
-                } else {
-                    words.mapIndexed { index, word ->
-                        "${index + 1}. $word - ${word.length} chars"
-                    }.joinToString("\n")
-                }
+                words.mapIndexed { index, word ->
+                    "${index + 1}. $word — ${word.length} симв."
+                }.joinToString(separator = "\n")
             }
         }
     }

@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:allowBackup="true"
-        android:label="Lab 1 - Variant 16"
+        android:label="ЛР 1 — Вариант 16"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
